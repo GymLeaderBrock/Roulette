@@ -1,0 +1,36 @@
+import random
+
+# Define the roulette wheel
+wheel = [
+    'green', 'red', 'black', 'red', 'black', 'red', 'black', 'red', 'black', 'red', 'black', 'black', 'red', 'black', 'red', 'black', 'red', 'black', 'red', 'red', 'black', 'red', 'black', 'red', 'black', 'red', 'black', 'red', 'green'
+]
+
+# Initialize player's balance
+balance = 100
+
+while True:
+    # Get player's bet
+    print("Your current balance is: " + str(balance))
+    bet = int(input("Place your bet (Enter 0 to quit): "))
+    if bet <= 0:
+        print("Thanks for playing!")
+        break
+    elif bet > balance:
+        print("Insufficient funds. Please enter a valid bet.")
+        continue
+
+    # Get player's bet type (red/black, number, etc)
+    bet_type = input("What type of bet would you like to place? (red/black, number, etc): ")
+    if bet_type.isdigit(): 
+        bet_type = int(bet_type)
+    # Spin the wheel
+    result = random.choice(wheel)
+    print("The roulette ball landed on: " + result)
+
+    # Check if player wins or loses
+    if bet_type == result:
+        print("You won! Your bet of " + str(bet) + " has been added to your balance.")
+        balance += bet
+    else:
+        print("You lost! Your bet of " + str(bet) + " has been subtracted from your balance.")
+        balance -= bet
